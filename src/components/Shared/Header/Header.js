@@ -1,24 +1,33 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const Header = () => {
     const [navbar, setNavbar] = useState(false);
+    const {user,logOut}=useContext(AuthContext)
+    const navigate=useNavigate()
+    console.log(user)
 
+    const handleLogOut=()=>{
+      logOut()
+      .then(()=> navigate("/login"))
+      .catch(er=>console.error(er))
+    }
 
     return (
       <nav className='w-full fixed z-10 shadow-lg bg-white ' >
-        <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+        <div className="justify-between px-4 mx-auto lg:max-w-7xl lg:items-center lg:flex lg:px-8">
           <div>
-            <div className="flex items-center justify-between py-3 md:py-5 md:block">
+            <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
               <Link to="">
                 <div className='flex items-center'>
                   <img src="{logo}" className="w-12 rounded-full" alt="" />
                   <h2 className='text-2xl ml-2 font-bold text-red-800 hover:text-rose-400'>Foodies !</h2>
                 </div>
               </Link>
-              <div className="md:hidden">
+              <div className="lg:hidden">
                 <button
-                  className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                  className="p-2 text-gray-700 rounded-lg outline-none focus:border-gray-400 focus:border"
                   onClick={() => setNavbar(!navbar)}
                 >
                   {navbar ? (
@@ -56,10 +65,10 @@ const Header = () => {
           </div>
           <div>
             <div
-              className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
+              className={`flex-1  justify-self-center pb-3 mt-8 lg:block lg:pb-0 lg:mt-0 ${navbar ? "block" : "hidden"
                 }`}
             >
-              <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+              <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
                 <li className="text-red-400 font-semibold text-xl   hover:text-rose-600 lg:hover:underline">
                   <Link to="/">Home</Link>
                 </li>
@@ -72,11 +81,17 @@ const Header = () => {
                 <li className="text-red-400 font-semibold text-xl   hover:text-rose-600 lg:hover:underline">
                   <Link to="courses">Courses</Link>
                 </li>
-                {/* {user?.uid ?
+                {user?.uid ?
   
                   <>
                     <li className="text-red-400 font-semibold text-xl hover:text-rose-400">
-                      <Link  >Log Out</Link>
+                      <Link onClick={handleLogOut} >Log Out</Link>
+                    </li>
+                    <li className="text-red-400 font-semibold text-xl hover:text-rose-400">
+                      <Link  >My Reviews</Link>
+                    </li>
+                    <li className="text-red-400 font-semibold text-xl hover:text-rose-400">
+                      <Link  >Add Services</Link>
                     </li>
                     <li className="text-red-400 font-semibold text-xl hover:text-rose-400">
                       <Link >
@@ -96,7 +111,7 @@ const Header = () => {
                     </li>
                   </>
   
-                } */}
+                }
                
                
               </ul>

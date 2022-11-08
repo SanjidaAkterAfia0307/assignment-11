@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { FaStar, FaStarHalfAlt, GiChefToque } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
+import Review from '../Review/Review';
 
 const ServiceDetails = () => {
     const service = useLoaderData()
     console.log(service)
     const { title, details, img, price, time, delivery, _id, rating, chef } = service
+     const [reviews,setReviews]=useState([])
+    useEffect(()=>{
+        fetch(`http://localhost:5000/reviews?service=${title}`)
+        .then(res=>res.json())
+        .then(data=>setReviews(data))
+    },[title])
+
+    console.log(reviews)
     return (
 
-        <div className='w-4/5  mx-auto pt-24'>
-            <div className='w-full lg:w-3/5 mb-20 lg:mb-0'>
+        <div className='w-4/5 grid grid-cols-12 gap-20 mx-auto justify-center pt-24'>
+            <div className='w-full col-span-8  mb-20 lg:mb-0'>
                 <h1 className='text-5xl mb-12 text-rose-600 font-bold'>Order Our our {title} ! </h1>
 
                 <div className='flex flex-col md:flex-row  justify-between'>
@@ -38,20 +47,28 @@ const ServiceDetails = () => {
                     </div>
                 </div>
 
-                <div className='py-24'>
-                    <img className='rounded-2xl my-10' src={img} alt="" />
+                <div className='py-20'>
+                    <img className='rounded-2xl mb-10' src={img} alt="" />
                     <h2 className='text-3xl font-semibold my-5 text-orange-500'>Food Overview</h2>
                     <p className='text-lg text-justify'>{details.des}</p>
                     <br />
                     <p className='text-xl font-semibold my-5 text-red-600'>Our Packages :</p>
                     <ol>
-                        <li><span className='text-lg font-semibold my-5 '>Package 2 (for 2 person) :</span> {details.pack2}.</li>
-                        <li><span className='text-lg font-semibold my-5 '>Package 3 (for 5 person) :</span> {details.pack3}.</li>
-                        <li><span className='text-lg font-semibold my-5 '>Package 1 (for 3 person) :</span> {details.pack1}.</li>
+                        <li className='py-3'><span className='text-lg  font-semibold  '>Package 1 (for 2 person) :</span> {details.pack1}.</li>
+                        <li className='py-3'><span className='text-lg  font-semibold  '>Package 2 (for 3 person) :</span> {details.pack2}.</li>
+                        <li className='py-3'><span className='text-lg  font-semibold  '>Package 3 (for 5 person) :</span> {details.pack3}.</li>
                     </ol>
                 </div>
 
 
+            </div>
+            <div className="divider divider-horizontal "></div>
+            <div className='col-span-3'>
+                <h1 className='text-5xl text-center my-4'>Reviews</h1>
+                {
+                    reviews.map(review=> <Review key={review._id} review={review}></Review>)
+                }
+               
             </div>
         </div>
     );
