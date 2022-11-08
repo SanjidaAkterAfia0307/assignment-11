@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Review from '../Review/Review';
+import { AuthContext } from '../../Contexts/AuthProvider';
+import AddReview from '../AddReview/AddReview';
 
 const ServiceDetails = () => {
     const service = useLoaderData()
@@ -13,8 +15,25 @@ const ServiceDetails = () => {
         .then(res=>res.json())
         .then(data=>setReviews(data))
     },[title])
-
+    const [msg,setMsg]=useState("")
+    const navigate=useNavigate()
     console.log(reviews)
+    const {user}=useContext(AuthContext)
+    const handleAdd=()=>{
+        console.log("ami")
+        if(user?.email){
+            console.log("tumi",msg)
+            return navigate("/add")
+        }
+        else{
+            console.log("tomar",msg?.props?.children);
+            const newMsg=<p>Please</p>
+            return (
+                setMsg(newMsg.props.children)
+              
+            )
+        }
+    }
     return (
 
         <div className='w-4/5 grid grid-cols-12 gap-20 mx-auto justify-center pt-24'>
@@ -68,7 +87,20 @@ const ServiceDetails = () => {
                 {
                     reviews.map(review=> <Review key={review._id} review={review}></Review>)
                 }
-               
+               <div>
+                <p  className='btn' onClick={handleAdd} >Add your review</p>
+                {
+                    // user?.email?
+                    // <>
+                    // <AddReview/>
+                    // </>
+                    // :
+                    // <>
+                    // <p>Please</p>
+                    // </>
+                    `ami${msg? msg: ""}`
+                }
+               </div>
             </div>
         </div>
     );

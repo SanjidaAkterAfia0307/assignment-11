@@ -78,9 +78,7 @@ const Header = () => {
                 <li className="text-red-400 font-semibold text-xl   hover:text-rose-600 lg:hover:underline">
                   <Link to="/blog">Blog</Link>
                 </li>
-                <li className="text-red-400 font-semibold text-xl   hover:text-rose-600 lg:hover:underline">
-                  <Link to="courses">Courses</Link>
-                </li>
+                
                 {user?.uid ?
   
                   <>
