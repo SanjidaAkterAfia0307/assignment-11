@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
-const AddReview = ({service}) => {
+const AddReview = ({service,setLoad,load}) => {
 
     const {user}=useContext(AuthContext)
     console.log(user,service)
@@ -27,6 +27,7 @@ const AddReview = ({service}) => {
         })
         .then(res=>res.json())
         .then(data=>{
+            setLoad(!load)
             console.log(data)
             // window.location.reload()
         })

@@ -12,11 +12,12 @@ const ServiceDetails = () => {
     const { title, details, img, price, time, delivery, _id, rating, chef } = service
     useTitle(`${title}`)
      const [reviews,setReviews]=useState([])
+     const [load,setLoad]=useState(true)
     useEffect(()=>{
         fetch(`http://localhost:5000/reviews?service=${title}`)
         .then(res=>res.json())
         .then(data=>setReviews(data))
-    },[title])
+    },[load,title])
     console.log(reviews)
     const {user}=useContext(AuthContext)
 
@@ -104,7 +105,7 @@ const ServiceDetails = () => {
                 {user?.email?
                    
                     // `${msg? msg: ""}`
-                    <AddReview key={_id}  service={title}></AddReview>
+                    <AddReview key={_id} setLoad={setLoad} load={load} service={title}></AddReview>
                     :
                     <p>Please <Link className='text-orange-400' to="/login">Log in</Link> first to add review!</p>
                 }
