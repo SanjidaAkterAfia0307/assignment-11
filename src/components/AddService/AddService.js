@@ -1,7 +1,9 @@
 import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import useTitle from '../../Hooks/useTitle';
 
 const AddService = () => {
+    useTitle("Add Service")
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -35,7 +37,8 @@ const AddService = () => {
         fetch("http://localhost:5000/services", {
             method: "POST",
             headers: {
-                'content-type': "application/json"
+                'content-type': "application/json",
+                
             },
             body: JSON.stringify(service)
         })
@@ -59,8 +62,9 @@ const AddService = () => {
             })
     }
     return (
-        <div className='pt-24'>
-            <form onSubmit={handleSubmit} className='w-1/2 mx-auto shadow-2xl p-16'>
+        <div className='pt-24 pb-56'>
+            <h2 className='text-center text-4xl font-bold'>Update Review</h2>
+            <form onSubmit={handleSubmit} className='lg:w-1/2 mx-auto shadow-2xl p-16'>
                 <label className="label">
                     <span className="label-text">Chef's Name</span>
                 </label>
@@ -75,17 +79,17 @@ const AddService = () => {
                 <label className="label">
                     <span className="label-text">Service Name</span>
                 </label>
-                <textarea type="textarea" name='serviceName' placeholder="Type here" className="input input-bordered w-full " ></textarea>
+                <textarea type="textarea" name='serviceName' placeholder="Type here" className="input input-bordered w-full " required ></textarea>
 
                 <label className="label">
                     <span className="label-text">Service Image</span>
                 </label>
-                <textarea type="textarea" name='serviceImg' placeholder="Type here" className="input input-bordered w-full " ></textarea>
+                <textarea type="textarea" name='serviceImg' placeholder="Type here" className="input input-bordered w-full "  required></textarea>
 
                 <label className="label">
                     <span className="label-text">Service Price</span>
                 </label>
-                <textarea type="textarea" name='servicePrice' placeholder="Type here" className="input input-bordered w-full " ></textarea>
+                <textarea type="textarea" name='servicePrice' placeholder="Type here" className="input input-bordered w-full " required></textarea>
 
                 <label className="label">
                     <span className="label-text">Delivery Time</span>
@@ -100,12 +104,12 @@ const AddService = () => {
                 <label className="label">
                     <span className="label-text">Rating</span>
                 </label>
-                <textarea type="textarea" name='rating' placeholder="Type here" className="input input-bordered w-full " ></textarea>
+                <textarea type="textarea" name='rating' placeholder="Type here" className="input input-bordered w-full " required ></textarea>
 
                 <label className="label">
                     <span className="label-text">Service Description</span>
                 </label>
-                <textarea type="textarea" name='des' placeholder="Type here" className="input input-bordered w-full " ></textarea>
+                <textarea type="textarea" name='des' placeholder="Type here" className="input input-bordered w-full " required></textarea>
 
                 <label className="label">
                     <span className="label-text">Package 1</span>

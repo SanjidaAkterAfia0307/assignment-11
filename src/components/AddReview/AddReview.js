@@ -20,7 +20,8 @@ const AddReview = ({service}) => {
         fetch(`http://localhost:5000/reviews?service=${service}`,{
             method:"POST",
             headers:{
-                "content-type":"application/json"
+                "content-type":"application/json",
+               
             },
             body:JSON.stringify(reviewObj)
         })

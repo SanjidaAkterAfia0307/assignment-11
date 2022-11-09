@@ -22,9 +22,7 @@ const ServiceCard = ({ service }) => {
                         :
                         details.des
                 }
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
-                </div>
+                
             </div>
         </div>
     );

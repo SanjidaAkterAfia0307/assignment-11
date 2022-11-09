@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 
 const Register = () => {
+    useTitle("Sign Up")
     const { user, createUser, createGoogle ,updateUser} = useContext(AuthContext)
     const [error,setError]=useState("")
     const navigate=useNavigate()
@@ -51,7 +53,7 @@ const Register = () => {
         .catch(er=>console.error(er))
     }
     return (
-        <div className='w-1/2 mx-auto pt-24 '>
+        <div className='lg:w-1/2 mx-auto pt-24 pb-56 '>
             
 
             <div className='lg:my-auto lg:p-12 p-10 md:p-20'>

@@ -6,8 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
+import useTitle from '../../Hooks/useTitle';
 
 const MyReviews = () => {
+    useTitle("My Review")
     const { user } = useContext(AuthContext)
     const [myReviews, setMyReviews] = useState([])
 
@@ -27,7 +29,10 @@ const MyReviews = () => {
         const proceed = window.confirm("Are you sure you want to delete it?")
         if (proceed) {
             fetch(`http://localhost:5000/reviews/${id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {
@@ -57,7 +62,8 @@ const MyReviews = () => {
         fetch(`http://localhost:5000/reviews/${id}`, {
             method: "PATCH",
             headers: {
-                'content-type': "application/json"
+                'content-type': "application/json",
+                authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({ upValue })
         })
@@ -90,14 +96,14 @@ const MyReviews = () => {
 
             {
                 myReviews.length > 0 ?
-                    <div className="overflow-x-auto w-full">
+                    <div className="overflow-x-auto  w-full">
                         <table className="table w-full">
 
                             <thead>
                                 <tr>
-                                    <th>
+                                    <td>
 
-                                    </th>
+                                    </td>
                                     <th>Name</th>
                                     <th>Service</th>
                                     <th>Review</th>
@@ -109,9 +115,9 @@ const MyReviews = () => {
 
                                 {
                                     myReviews.map(review => <tr key={review._id}>
-                                        <th>
+                                        <td>
                                             <label className='btn rounded-full' onClick={() => handleDelete(review._id)}>
-                                                <FaTrashAlt ></FaTrashAlt>
+                                                <FaTrashAlt className=''></FaTrashAlt>
                                                 <ToastContainer
                                                     position="top-center"
                                                     autoClose={5000}
@@ -125,7 +131,7 @@ const MyReviews = () => {
                                                     theme="dark"
                                                 />
                                             </label>
-                                        </th>
+                                        </td>
                                         <td>
                                             <div className="flex items-center space-x-3">
                                                 <div className="avatar">

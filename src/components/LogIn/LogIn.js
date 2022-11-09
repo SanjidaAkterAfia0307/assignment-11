@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 
 const LogIn = () => {
+    useTitle("Log In")
     const { user, logIn } = useContext(AuthContext)
     const [error,setError]=useState("")
     const navigate=useNavigate();
@@ -22,13 +24,33 @@ const LogIn = () => {
                 const user = res.user;
                 console.log(user)
                 setError("")
-                navigate(from,{replace:true})
+                const currentUser = {
+                    email: user.email
+                }
+
+                console.log(currentUser);
+
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    });
             })
             .catch(er => setError(er.message))
     }
 
     return (
-        <div className='w-1/2 mx-auto pt-24 '>
+        <div className='lg:w-1/2 mx-auto pt-24 pb-56 '>
 
 
             <div className='lg:my-auto lg:p-12 p-10 md:p-20'>
