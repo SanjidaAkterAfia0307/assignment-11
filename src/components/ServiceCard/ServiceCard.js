@@ -4,7 +4,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceCard = ({ service }) => {
-    const { title, details, img, price, time, delivery, _id } = service
+    const { title, details, img, price, time, delivery, _id,rating } = service
     return (
         <div className="card w-96 bg-zinc-900 text-white shadow-2xl  ">
             <figure className="px-10 pt-10"><PhotoProvider>
@@ -22,7 +22,10 @@ const ServiceCard = ({ service }) => {
                         :
                         details.des
                 }
-                
+                <div className='flex'>
+                    <p><span className='font-semibold text-orange-400'>Price: </span>{price}</p>
+                    <p><span className='font-semibold text-orange-400'>Rating: </span> {rating}</p>
+                </div>
             </div>
         </div>
     );
