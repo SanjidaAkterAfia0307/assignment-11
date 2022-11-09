@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Review from '../Review/Review';
 import { AuthContext } from '../../Contexts/AuthProvider';
@@ -7,7 +7,7 @@ import AddReview from '../AddReview/AddReview';
 
 const ServiceDetails = () => {
     const service = useLoaderData()
-    console.log(service)
+    // console.log(service)
     const { title, details, img, price, time, delivery, _id, rating, chef } = service
      const [reviews,setReviews]=useState([])
     useEffect(()=>{
@@ -15,25 +15,25 @@ const ServiceDetails = () => {
         .then(res=>res.json())
         .then(data=>setReviews(data))
     },[title])
-    const [msg,setMsg]=useState("")
-    const navigate=useNavigate()
-    console.log(reviews)
+    // const [msg,setMsg]=useState("")
+    // const navigate=useNavigate()
+    // console.log(reviews)
     const {user}=useContext(AuthContext)
-    const handleAdd=()=>{
-        console.log("ami")
-        if(user?.email){
-            console.log("tumi",msg)
-            return navigate("/add")
-        }
-        else{
-            console.log("tomar",msg?.props?.children);
-            const newMsg=<p>Please</p>
-            return (
-                setMsg(newMsg.props.children)
+    // const handleAdd=()=>{
+    //     console.log("ami")
+    //     if(user?.email){
+    //         console.log("tumi",msg)
+    //         return <AddReview></AddReview>
+    //     }
+    //     else{
+    //         console.log("tomar",msg?.props?.children);
+    //         const newMsg=`Please log in first.`
+    //         return (
+    //             setMsg(newMsg)
               
-            )
-        }
-    }
+    //         )
+    //     }
+    // }
     return (
 
         <div className='w-4/5 grid grid-cols-12 gap-20 mx-auto justify-center pt-24'>
@@ -88,18 +88,17 @@ const ServiceDetails = () => {
                     reviews.map(review=> <Review key={review._id} review={review}></Review>)
                 }
                <div>
-                <p  className='btn' onClick={handleAdd} >Add your review</p>
-                {
-                    // user?.email?
-                    // <>
-                    // <AddReview/>
-                    // </>
-                    // :
-                    // <>
-                    // <p>Please</p>
-                    // </>
-                    `ami${msg? msg: ""}`
+                <Link  className='text-2xl  font-semibold'  >Add your review</Link>
+                <div className='my-2 text-lg font-semibold'>
+
+                {user?.email?
+                   
+                    // `${msg? msg: ""}`
+                    <AddReview key={_id} service={title}></AddReview>
+                    :
+                    <p>Please <Link className='text-orange-400' to="/login">Log in</Link> first</p>
                 }
+                </div>
                </div>
             </div>
         </div>
