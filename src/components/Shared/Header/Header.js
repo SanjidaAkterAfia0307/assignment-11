@@ -86,10 +86,10 @@ const Header = () => {
                       <Link onClick={handleLogOut} >Log Out</Link>
                     </li>
                     <li className="text-red-400 font-semibold text-xl hover:text-rose-400">
-                      <Link  >My Reviews</Link>
+                      <Link to="/myreviews" >My Reviews</Link>
                     </li>
                     <li className="text-red-400 font-semibold text-xl hover:text-rose-400">
-                      <Link  >Add Services</Link>
+                      <Link to="/addservice" >Add Services</Link>
                     </li>
                     <li className="text-red-400 font-semibold text-xl hover:text-rose-400">
                       <Link >

@@ -14,11 +14,23 @@ const ServiceDetails = () => {
         fetch(`http://localhost:5000/reviews?service=${title}`)
         .then(res=>res.json())
         .then(data=>setReviews(data))
-    },[title])
+    },[reviews])
+    console.log(reviews)
+    const {user}=useContext(AuthContext)
+
+
+
+
+
+
+
+
+
+
+
+    
     // const [msg,setMsg]=useState("")
     // const navigate=useNavigate()
-    // console.log(reviews)
-    const {user}=useContext(AuthContext)
     // const handleAdd=()=>{
     //     console.log("ami")
     //     if(user?.email){
@@ -94,7 +106,7 @@ const ServiceDetails = () => {
                 {user?.email?
                    
                     // `${msg? msg: ""}`
-                    <AddReview key={_id} service={title}></AddReview>
+                    <AddReview key={_id}  service={title}></AddReview>
                     :
                     <p>Please <Link className='text-orange-400' to="/login">Log in</Link> first</p>
                 }

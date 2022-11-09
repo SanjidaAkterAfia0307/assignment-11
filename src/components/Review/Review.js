@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 const Review = ({ review }) => {
-    console.log(review)
+    // console.log(review)
     const { name, service, photo, ratings, description } = review
     return (
         <div className='my-6'>
