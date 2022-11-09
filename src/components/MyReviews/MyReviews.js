@@ -33,7 +33,16 @@ const MyReviews = () => {
                 .then(data => {
                     console.log(data)
                     if (data.deletedCount > 0) {
-                        toast("Delete successful")
+                        toast.success('Deleted successful', {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                        });
                         const remain = myReviews.filter(review => review._id !== id)
                         setMyReviews(remain)
                     }
@@ -56,7 +65,16 @@ const MyReviews = () => {
             .then(data => {
                 console.log(data)
                 if (data.modifiedCount > 0) {
-                    toast("Update successful")
+                    toast.success('Updated successful', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
                     const remain = myReviews.filter(review => review._id !== id)
                     const approve = myReviews.find(review => review._id === id)
                     approve.description = upValue;
@@ -94,7 +112,8 @@ const MyReviews = () => {
                                         <th>
                                             <label className='btn rounded-full' onClick={() => handleDelete(review._id)}>
                                                 <FaTrashAlt ></FaTrashAlt>
-                                                <ToastContainer position="top-center"
+                                                <ToastContainer
+                                                    position="top-center"
                                                     autoClose={5000}
                                                     hideProgressBar={false}
                                                     newestOnTop={false}
@@ -103,7 +122,8 @@ const MyReviews = () => {
                                                     pauseOnFocusLoss
                                                     draggable
                                                     pauseOnHover
-                                                    theme="colored"></ToastContainer>
+                                                    theme="dark"
+                                                />
                                             </label>
                                         </th>
                                         <td>
@@ -142,7 +162,7 @@ const MyReviews = () => {
                     </div>
             }
 
-            
+
 
         </div>
     );
