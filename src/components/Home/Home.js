@@ -7,11 +7,11 @@ import offer from "../../img/offer.jpg"
 import { Link} from 'react-router-dom';
 import ServiceCard from '../ServiceCard/ServiceCard';
 import { GiChefToque } from "react-icons/gi";
-import useTitle from '../../Hooks/useTitle';
+
 
 
 const Home = () => {
-    useTitle("Home")
+
     const [services, setServices] = useState([])
     const count = 3;
     useEffect(() => {
