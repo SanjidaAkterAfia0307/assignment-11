@@ -5,7 +5,7 @@ import useTitle from '../../Hooks/useTitle';
 
 const LogIn = () => {
     useTitle("Log In")
-    const { user, logIn } = useContext(AuthContext)
+    const { user, logIn,createGoogle } = useContext(AuthContext)
     const [error,setError]=useState("")
     const navigate=useNavigate();
     const location=useLocation();
@@ -49,6 +49,17 @@ const LogIn = () => {
             .catch(er => setError(er.message))
     }
 
+    const handleGoogle = () => {
+        createGoogle()
+            .then(res => {
+                const user = res.user;
+
+
+                navigate("/")
+            })
+            .catch(er => console.log(er))
+    }
+
     return (
         <div className='lg:w-1/2 mx-auto pt-24 pb-56 '>
 
@@ -69,6 +80,12 @@ const LogIn = () => {
                     </div>
                     <p className='text-xl text-yellow-400 py-3'>{error}</p>
                     <button type="submit" className="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+
+                    <div className="divider">Or</div>
+                    <div className='flex items-center flex-col'>
+                        <button type="submit" onClick={handleGoogle} className="text-slate-800 border-2 border-yellow-400 hover:bg-yellow-400 block m-2 font-medium rounded-lg  px-5 lg:w-96 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign up With Google</button>
+                        
+                    </div>
                     
                     <p className='text-center my-2'><span>New To Foodie ?</span> <Link className='text-orange-400' to="/register">Sign Up</Link></p>
                 </form>

@@ -10,8 +10,8 @@ const Footer = () => {
                 <Link className="link link-hover">Jobs</Link>
                 <Link className="link link-hover">Press kit</Link>
             </div> */}
-            <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
-                <li className="link link-hover">
+            <ul className="items-center justify-center space-y-8 flex lg:space-x-6 lg:space-y-0">
+                <li className="link link-hover mt-6">
                     <Link to="/">Home</Link>
                 </li>
                 <li className="link link-hover">
