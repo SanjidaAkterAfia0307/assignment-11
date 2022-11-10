@@ -17,7 +17,7 @@ const AddReview = ({service,setLoad,load}) => {
             date
         }
 
-        fetch(`https://assignment-11-server-rouge.vercel.app/reviews?service=${service}`,{
+        fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/reviews?service=${service}`,{
             method:"POST",
             headers:{
                 "content-type":"application/json",

@@ -34,7 +34,7 @@ const AddService = () => {
             title
         }
 
-        fetch("https://assignment-11-server-rouge.vercel.app/services", {
+        fetch("https://assignment-11-server-sanjidaakterafia0307.vercel.app/services", {
             method: "POST",
             headers: {
                 'content-type': "application/json",

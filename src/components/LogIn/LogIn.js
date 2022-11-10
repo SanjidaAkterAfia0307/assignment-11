@@ -17,7 +17,7 @@ const LogIn = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+
 
         logIn(email, password)
             .then(res => {
@@ -31,7 +31,7 @@ const LogIn = () => {
  
 
                 // get jwt token
-                fetch('https://assignment-11-server-rouge.vercel.app/jwt', {
+                fetch('https://assignment-11-server-sanjidaakterafia0307.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

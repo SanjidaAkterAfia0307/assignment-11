@@ -10,34 +10,40 @@ import useTitle from '../../Hooks/useTitle';
 
 const MyReviews = () => {
     useTitle("My Review")
-    const { user } = useContext(AuthContext)
+    const { user ,logOut} = useContext(AuthContext)
     const [myReviews, setMyReviews] = useState([])
 
     const name = user?.displayName
+    const email = user?.email
 
     useEffect(() => {
-        fetch(`https://assignment-11-server-rouge.vercel.app/reviews?name=${name}`)
-            .then(res => res.json())
+        fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/reviews?name=${name}&email=${email}`)
+        .then(res => res.json())
             .then(data => {
                 setMyReviews(data)
             })
-    }, [name])
+    }, [name,email])
 
 
 
     const handleDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete it?")
         if (proceed) {
-            fetch(`https://assignment-11-server-rouge.vercel.app/reviews/${id}`, {
+            fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/reviews/${id}`, {
                 method: "DELETE",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        return logOut();
+                    }
+                    return res.json();
+                })
                 .then(data => {
 
-                    if (data.deletedCount > 0) {
+                    if (data?.deletedCount > 0) {
                         toast.success('Deleted successful', {
                             position: "top-center",
                             autoClose: 5000,
@@ -58,7 +64,7 @@ const MyReviews = () => {
     const handleUpdate = (id, e) => {
         const upValue = e.target.upReview.value
 
-        fetch(`https://assignment-11-server-rouge.vercel.app/reviews/${id}`, {
+        fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/reviews/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': "application/json",

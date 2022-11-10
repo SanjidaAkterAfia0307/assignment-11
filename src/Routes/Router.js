@@ -19,17 +19,17 @@ export const router=createBrowserRouter([
             {
                 path:"/",
                 element:<Home></Home>,
-                loader:()=>fetch("https://assignment-11-server-rouge.vercel.app/services")
+                loader:()=>fetch("https://assignment-11-server-sanjidaakterafia0307.vercel.app/services")
             },
             {
                 path:"/services",
                 element:<Services></Services>,
-                // loader:()=>fetch("https://assignment-11-server-rouge.vercel.app/services")
+                
             },
             {
                 path:"/services/:id",
                 element:<ServiceDetails></ServiceDetails>,
-                loader:({params})=>fetch(`https://assignment-11-server-rouge.vercel.app/services/${params.id}`)
+                loader:({params})=>fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/services/${params.id}`)
             },
             {
                 path:"/blog",

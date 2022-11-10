@@ -15,7 +15,7 @@ const Home = () => {
     const [services, setServices] = useState([])
     const count = 3;
     useEffect(() => {
-        fetch(`https://assignment-11-server-rouge.vercel.app/services?count=${count}`)
+        fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/services?count=${count}`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [count])
