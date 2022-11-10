@@ -3,13 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="footer    footer-center p-3 lg:p-6 bg-base-200 text-base-content rounded">
-            {/* <div className="grid grid-flow-col gap-4">
-                <Link className="link link-hover">About us</Link>
-                <Link className="link link-hover">Contact</Link>
-                <Link className="link link-hover">Jobs</Link>
-                <Link className="link link-hover">Press kit</Link>
-            </div> */}
+        <footer className="footer  fixed bottom-0  footer-center p-3 lg:p-6 bg-base-200 text-base-content rounded">
+           
             <ul className="items-center justify-center space-y-8 flex lg:space-x-6 lg:space-y-0">
                 <li className="link link-hover">
                     <Link to="/">Home</Link>
