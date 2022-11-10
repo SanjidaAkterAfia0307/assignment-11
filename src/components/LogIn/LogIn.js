@@ -54,10 +54,10 @@ const LogIn = () => {
             .then(res => {
                 const user = res.user;
 
-
+                setError(" ")
                 navigate("/")
             })
-            .catch(er => console.log(er))
+            .catch(er => setError(er.message))
     }
 
     return (

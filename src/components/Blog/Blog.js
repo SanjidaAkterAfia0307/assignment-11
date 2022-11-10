@@ -4,7 +4,7 @@ import useTitle from '../../Hooks/useTitle';
 const Blog = () => {
     useTitle("Blog")
     return (
-        <div className='py-24 w-5/6 mx-auto'>
+        <div className='py-24 pb-56 w-5/6 mx-auto'>
             <div className='grid lg:grid-cols-2 gap-10'>
                 <div className="card bg-base-100 shadow-xl">
                     <div className="card-body">
@@ -67,7 +67,7 @@ const Blog = () => {
                 </div>
                 <div className="card bg-base-100 shadow-xl">
                     <div className="card-body">
-                        <h2 className="card-title">What is JWT, and how does it work?</h2>
+                        <h2 className="card-title">How does NodeJS handle multiple requests at the same time?</h2>
                         <div>
                             <p>NodeJS Web Server maintains a limited Thread Pool to provide services to client requests. Multiple clients make multiple requests to the NodeJS server. NodeJS receives these requests and places them into the EventQueue .
                                 NodeJS server has an internal component referred to as the EventLoop which is an infinite loop that receives requests and processes them. This EventLoop is single threaded. In other words, EventLoop is the listener for the EventQueue.

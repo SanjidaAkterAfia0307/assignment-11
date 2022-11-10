@@ -11,16 +11,16 @@ const ServiceDetails = () => {
     // console.log(service)
     const { title, details, img, price, time, delivery, _id, rating, chef } = service
     useTitle(`${title}`)
-     const [reviews,setReviews]=useState([])
-     const [load,setLoad]=useState(true)
-    useEffect(()=>{
+    const [reviews, setReviews] = useState([])
+    const [load, setLoad] = useState(true)
+    useEffect(() => {
         fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/reviews?service=${title}`)
-        .then(res=>res.json())
-        .then(data=>setReviews(data))
-    },[load,title])
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [load, title])
 
 
-    const {user}=useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     return (
 
@@ -30,15 +30,15 @@ const ServiceDetails = () => {
 
                 <div className='flex flex-col md:flex-row  justify-between'>
                     <div className='flex mb-6  items-center'>{
-                        chef.img?
+                        chef.img ?
 
-                        <img className='w-16 border-2 border-white mr-3 shadow-md h-16 rounded-full' src={chef.img} alt="" />
-                        :
-                        <FaUserAlt className='w-16 border-2 border-white mr-3 shadow-md h-16 rounded-full'></FaUserAlt>
+                            <img className='w-16 border-2 border-white mr-3 shadow-md h-16 rounded-full' src={chef.img} alt="" />
+                            :
+                            <FaUserAlt className='w-16 border-2 border-white mr-3 shadow-md h-16 rounded-full'></FaUserAlt>
                     }
                         <div>
                             <h3 className='font-bold text-base text-red-500'>Chef</h3>
-                            <h3 className='font-bold text-lg'>{chef.name? chef.name:"Not Found"}</h3>
+                            <h3 className='font-bold text-lg'>{chef.name ? chef.name : "Not Found"}</h3>
                         </div>
                     </div>
                     <div className='mb-6'>
@@ -64,30 +64,29 @@ const ServiceDetails = () => {
                     <h2 className='text-3xl font-semibold my-5 text-orange-500'>Food Overview</h2>
                     <p className='text-lg text-justify'>{details.des}</p>
                     <br />
+                    <div>{
+                        delivery && <p><span className='font-bold'>Delivery :</span> {delivery}</p>
+                    }</div>
+                    <br />
+                    <div>{
+                        time && <p><span className='font-bold'>Delivery Available:</span> {time}</p>
+                    }</div>
                     <p className='text-xl font-semibold my-5 text-red-600'>Our Packages :</p>
                     <ol>
-                        <li className='py-3'>{
-                            details?.pack1 ? 
-                            <div>{`Package 1 (for 3 person) :${details?.pack1}.`}</div>
-                            :
-                            <></>
+                    
+                        {
+                            details?.pack1 &&
+                            <li className='py-3'> <p><span className='font-bold'>Package 1 (for 3 person) : </span>{details?.pack1}.</p></li>
                         }
-                            </li>
-                        <li className='py-3'>{
-                            details?.pack2 ? 
-                            <div>{`Package 2 (for 2 person) :${details?.pack2}.`}</div>
-                            :
-                            <></>
+                        {
+                            details?.pack2 &&
+                            <li className='py-3'> <p><span className='font-bold'>Package 2 (for 2 person) : </span>{details?.pack2}.</p></li>
                         }
-                            </li>
-                        <li className='py-3'>{
-                            details?.pack3 ? 
-                            <div>{`Package 3 (for 5 person) :${details?.pack3}.`}</div>
-                            :
-                            <></>
+                        {
+                            details?.pack3 &&
+                            <li className='py-3'> <p><span className='font-bold'>Package 3 (for 5 person) : </span>{details?.pack3}.</p></li>
                         }
-                            </li>
-                        
+
                     </ol>
                 </div>
 
@@ -97,21 +96,21 @@ const ServiceDetails = () => {
             <div className='col-span-3'>
                 <h1 className='text-5xl text-center my-4'>Reviews</h1>
                 {
-                    reviews.map(review=> <Review key={review._id} review={review}></Review>)
+                    reviews.map(review => <Review key={review._id} review={review}></Review>)
                 }
-               <div>
-                <Link  className='text-2xl  font-semibold'  >Add your review</Link>
-                <div className='my-2 text-lg font-semibold'>
+                <div>
+                    <Link className='text-2xl  font-semibold'  >Add your review</Link>
+                    <div className='my-2 text-lg font-semibold'>
 
-                {user?.email?
-                   
-                    // `${msg? msg: ""}`
-                    <AddReview key={_id} setLoad={setLoad} load={load} service={title}></AddReview>
-                    :
-                    <p>Please <Link className='text-orange-400' to="/login">Log in</Link> first to add review!</p>
-                }
+                        {user?.email ?
+
+                            // `${msg? msg: ""}`
+                            <AddReview key={_id} setLoad={setLoad} load={load} service={title}></AddReview>
+                            :
+                            <p>Please <Link className='text-orange-400' to="/login">Log in</Link> first to add review!</p>
+                        }
+                    </div>
                 </div>
-               </div>
             </div>
         </div>
     );
