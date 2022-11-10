@@ -22,7 +22,7 @@ const Register = () => {
         createUser(email, password)
             .then(res => {
                 const user = res.user;
-                console.log(user)
+
                 handleUpdateUser(name,photo)
                 setError("")
                 navigate("/")
@@ -34,7 +34,7 @@ const Register = () => {
         createGoogle()
             .then(res => {
                 const user = res.user;
-                console.log(user)
+
                 setError("")
                 navigate("/")
             })

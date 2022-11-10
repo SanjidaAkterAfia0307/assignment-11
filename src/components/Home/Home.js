@@ -15,11 +15,10 @@ const Home = () => {
     const [services, setServices] = useState([])
     const count = 3;
     useEffect(() => {
-        fetch(`http://localhost:5000/services?count=${count}`)
+        fetch(`https://assignment-11-server-rouge.vercel.app/services?count=${count}`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [count])
-    console.log(services)
     return (
         <div className='w-4/5  mx-auto py-24'>
             <div className=''>

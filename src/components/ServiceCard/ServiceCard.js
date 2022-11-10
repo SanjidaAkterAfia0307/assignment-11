@@ -18,7 +18,7 @@ const ServiceCard = ({ service }) => {
                 <h2 className="card-title text-orange-400">{title}</h2>
                 {
                     details.des.length > 100 ?
-                        <div className='inline'>{details.des.slice(0, 100) + '...'} <Link to={`/services/${_id}`}>Read More</Link> </div>
+                        <div className='inline'>{details.des.slice(0, 100) + '...'} <Link className='text-rose-400' to={`/services/${_id}`}>Read More</Link> </div>
                         :
                         details.des
                 }

@@ -14,11 +14,11 @@ const ServiceDetails = () => {
      const [reviews,setReviews]=useState([])
      const [load,setLoad]=useState(true)
     useEffect(()=>{
-        fetch(`http://localhost:5000/reviews?service=${title}`)
+        fetch(`https://assignment-11-server-rouge.vercel.app/reviews?service=${title}`)
         .then(res=>res.json())
         .then(data=>setReviews(data))
     },[load,title])
-    console.log(reviews)
+
     const {user}=useContext(AuthContext)
 
     return (

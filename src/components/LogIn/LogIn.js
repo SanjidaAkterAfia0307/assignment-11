@@ -22,16 +22,16 @@ const LogIn = () => {
         logIn(email, password)
             .then(res => {
                 const user = res.user;
-                console.log(user)
+
                 setError("")
                 const currentUser = {
                     email: user.email
                 }
 
-                console.log(currentUser);
+ 
 
                 // get jwt token
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://assignment-11-server-rouge.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -40,7 +40,7 @@ const LogIn = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+
                         
                         localStorage.setItem('token', data.token);
                         navigate(from, { replace: true });

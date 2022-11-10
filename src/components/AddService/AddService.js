@@ -34,7 +34,7 @@ const AddService = () => {
             title
         }
 
-        fetch("http://localhost:5000/services", {
+        fetch("https://assignment-11-server-rouge.vercel.app/services", {
             method: "POST",
             headers: {
                 'content-type': "application/json",
@@ -44,8 +44,6 @@ const AddService = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                // window.location.reload()
                 if (data.acknowledged) {
                     toast.success('Added successful', {
                         position: "top-center",

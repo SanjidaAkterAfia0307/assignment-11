@@ -6,7 +6,7 @@ const Header = () => {
     const [navbar, setNavbar] = useState(false);
     const {user,logOut}=useContext(AuthContext)
     const navigate=useNavigate()
-    console.log(user)
+
 
     const handleLogOut=()=>{
       logOut()

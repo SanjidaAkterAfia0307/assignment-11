@@ -16,7 +16,7 @@ const MyReviews = () => {
     const name = user?.displayName
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?name=${name}`)
+        fetch(`https://assignment-11-server-rouge.vercel.app/reviews?name=${name}`)
             .then(res => res.json())
             .then(data => {
                 setMyReviews(data)
@@ -28,7 +28,7 @@ const MyReviews = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete it?")
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://assignment-11-server-rouge.vercel.app/reviews/${id}`, {
                 method: "DELETE",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`
@@ -36,7 +36,7 @@ const MyReviews = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+
                     if (data.deletedCount > 0) {
                         toast.success('Deleted successful', {
                             position: "top-center",
@@ -57,9 +57,8 @@ const MyReviews = () => {
     }
     const handleUpdate = (id, e) => {
         const upValue = e.target.upReview.value
-        console.log(e.target.upReview.value)
 
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://assignment-11-server-rouge.vercel.app/reviews/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': "application/json",
@@ -69,7 +68,6 @@ const MyReviews = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.modifiedCount > 0) {
                     toast.success('Updated successful', {
                         position: "top-center",

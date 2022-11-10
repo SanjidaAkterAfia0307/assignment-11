@@ -4,7 +4,7 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 const AddReview = ({service,setLoad,load}) => {
 
     const {user}=useContext(AuthContext)
-    console.log(user,service)
+
   const  handleAddReview=(e)=>{
     e.preventDefault()
         const review=e.target.review.value;
@@ -17,7 +17,7 @@ const AddReview = ({service,setLoad,load}) => {
             date
         }
 
-        fetch(`http://localhost:5000/reviews?service=${service}`,{
+        fetch(`https://assignment-11-server-rouge.vercel.app/reviews?service=${service}`,{
             method:"POST",
             headers:{
                 "content-type":"application/json",
@@ -28,8 +28,6 @@ const AddReview = ({service,setLoad,load}) => {
         .then(res=>res.json())
         .then(data=>{
             setLoad(!load)
-            console.log(data)
-            // window.location.reload()
         })
     }
     return (
