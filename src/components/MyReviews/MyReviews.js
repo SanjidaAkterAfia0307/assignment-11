@@ -17,7 +17,12 @@ const MyReviews = () => {
     const email = user?.email
 
     useEffect(() => {
-        fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/reviews?name=${name}&email=${email}`)
+        fetch(`https://assignment-11-server-sanjidaakterafia0307.vercel.app/myreviews?name=${name}&email=${email}`, {
+           
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         .then(res => res.json())
             .then(data => {
                 setMyReviews(data)

@@ -22,7 +22,7 @@ const Home = () => {
             .then(data => setServices(data))
     }, [count])
     return (
-        <div className='w-4/5  mx-auto py-24'>
+        <div className='w-4/5  mx-auto py-24 pb-56'>
             <div className=''>
                 <div className="carousel w-full  ">
                     <div id="slide1" className="carousel-item relative w-full ">
@@ -84,7 +84,7 @@ const Home = () => {
                         services.map(service=> <ServiceCard key={service._id} service={service}></ServiceCard>)
                     }
                 </div>
-                <div className='text-center my-16'>
+                <div className='text-center my-6'>
                     <Link to={`/services`} className='text-xl font-semibold tx'>See All</Link>
                 </div>
             </div>

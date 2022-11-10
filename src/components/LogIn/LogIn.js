@@ -5,12 +5,12 @@ import useTitle from '../../Hooks/useTitle';
 
 const LogIn = () => {
     useTitle("Log In")
-    const { user, logIn,createGoogle } = useContext(AuthContext)
-    const [error,setError]=useState("")
-    const navigate=useNavigate();
-    const location=useLocation();
+    const { user, logIn, createGoogle } = useContext(AuthContext)
+    const [error, setError] = useState("")
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const from=location.state?.from?.pathname || "/"
+    const from = location.state?.from?.pathname || "/"
     const handleLogIn = (e) => {
         e.preventDefault()
 
@@ -28,7 +28,7 @@ const LogIn = () => {
                     email: user.email
                 }
 
- 
+
 
                 // get jwt token
                 fetch('https://assignment-11-server-sanjidaakterafia0307.vercel.app/jwt', {
@@ -41,7 +41,7 @@ const LogIn = () => {
                     .then(res => res.json())
                     .then(data => {
 
-                        
+
                         localStorage.setItem('token', data.token);
                         navigate(from, { replace: true });
                     });
@@ -55,7 +55,31 @@ const LogIn = () => {
                 const user = res.user;
 
                 setError(" ")
-                navigate("/")
+
+
+                const currentUser = {
+                    email: user.email
+                }
+
+
+
+                // get jwt token
+                fetch('https://assignment-11-server-sanjidaakterafia0307.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    });
+
+                
             })
             .catch(er => setError(er.message))
     }
@@ -84,9 +108,9 @@ const LogIn = () => {
                     <div className="divider">Or</div>
                     <div className='flex items-center flex-col'>
                         <button type="submit" onClick={handleGoogle} className="text-slate-800 border-2 border-yellow-400 hover:bg-yellow-400 block m-2 font-medium rounded-lg  px-5 lg:w-96 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign up With Google</button>
-                        
+
                     </div>
-                    
+
                     <p className='text-center my-2'><span>New To Foodie ?</span> <Link className='text-orange-400' to="/register">Sign Up</Link></p>
                 </form>
             </div>

@@ -28,6 +28,7 @@ const AddReview = ({service,setLoad,load}) => {
         .then(res=>res.json())
         .then(data=>{
             setLoad(!load)
+            e.target.reset()
         })
     }
     return (
