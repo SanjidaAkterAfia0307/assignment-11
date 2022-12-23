@@ -71,7 +71,7 @@ const Home = () => {
                     <h2 className='text-5xl font-bold'>About Us</h2>
                 </div>
                 <div className='lg:w-1/2 md:mx-auto px-4 py-6 md:text-justify'>
-                    <p className='text-xl font-medium '>This is the best website to have homemade foods in a good quality and quantity.My principal purpose is to make your food habit and health sound and prepare a family or friends gathering .That's why we always provide food packages.</p>
+                    <p className='text-xl font-medium '>This is the best website to have homemade foods in a good quality and quantity.My principal purpose is to make your food habit and health sound and prepare a family or friends gathering .That's why I always provide food packages.</p>
                 </div>
             </div>
 
